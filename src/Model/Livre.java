@@ -13,6 +13,40 @@ public class Livre {
         this.prix = prix;
         this.adherantId = adherantId;
         this.auteur = auteur;
+    }
 
+    public Auteur getAuteur() {
+        return auteur;
+    }
+    public void setAuteur(Auteur auteur) {
+        this.auteur = auteur;
+    }
+
+    public String getAdherantId() {
+        return adherantId;
+    }
+    public void setAdherantId(String adherantId) {
+        this.adherantId = adherantId;
+    }
+
+    public float getPrix() {
+        return prix;
+    }
+    public void setPrix(float prix) {
+        this.prix = prix;
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+    public void setTitre(String titre) {
+        this.titre = titre;
+    }
+
+    public String getISBN() {
+        return ISBN;
+    }
+    public void setISBN(String ISBN) {
+        this.ISBN = ISBN;
     }
 }
