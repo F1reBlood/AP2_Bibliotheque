@@ -9,12 +9,12 @@ public class Adherant {
     private String email;
     private ArrayList<Livre> listLivres;
 
-    public Adherant(String identifiant, String nom, String prenom, String email, ArrayList<Livre> listLivres) {
+    public Adherant(String identifiant, String nom, String prenom, String email) {
         this.identifiant = identifiant;
         this.nom = nom;
         this.prenom = prenom;
         this.email = email;
-        this.listLivres = listLivres;
+        this.listLivres = new ArrayList<Livre>();
     }
 
     public String getIdentifiant() {

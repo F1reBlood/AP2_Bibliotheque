@@ -4,28 +4,28 @@ public class Livre {
     private String ISBN;
     private String titre;
     private float prix;
-    private Adherant adherantId;
-    private Auteur auteur;
+    private String adherantId;
+    private String auteurId;
 
-    public Livre(String ISBN, String titre, float prix, Adherant adherantId, Auteur auteur) {
+    public Livre(String ISBN, String titre, float prix, String adherantId, String auteurId) {
         this.ISBN = ISBN;
         this.titre = titre;
         this.prix = prix;
         this.adherantId = adherantId;
-        this.auteur = auteur;
+        this.auteurId = auteurId;
     }
 
-    public Auteur getAuteur() {
-        return auteur;
+    public String getAuteurId() {
+        return auteurId;
     }
-    public void setAuteur(Auteur auteur) {
-        this.auteur = auteur;
+    public void setAuteurId(String auteurId) {
+        this.auteurId = auteurId;
     }
 
-    public Adherant getAdherantId() {
+    public String getAdherantId() {
         return adherantId;
     }
-    public void setAdherantId(Adherant adherantId) {
+    public void setAdherantId(String adherantId) {
         this.adherantId = adherantId;
     }
 
