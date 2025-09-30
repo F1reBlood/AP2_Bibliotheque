@@ -57,16 +57,31 @@ public class SqlConnector {
         listLivres = new ArrayList<Livre>();
         Statement stmt3 = conn.createStatement();
         ResultSet r3 = stmt3.executeQuery("Select livre.*,adherant.identifiant,auteur.id from livre " +
-                "join adherant on livre.adherant=adherant.identifiant join auteur on livre.auteur=auteur.id");
+                "join adherant on livre.adherantId=adherant.identifiant join auteur on livre.auteurId=auteur.id");
         while (r3.next()) {
+            Adherant currentAdherant = null;
+            Auteur currentAuteur = null;
+            for (Adherant adherant : listAdherants) {
+                if (r3.getString(4).equals(adherant.getIdentifiant())) {
+                    currentAdherant = adherant;
+                }
+            }
+            for (Auteur auteur : listAuteurs) {
+                if (r3.getString(5).equals(auteur.getId())){
+                    currentAuteur = auteur;
+                }
+            }
+
             listLivres.add(new Livre(r3.getString(1), r3.getString(2), r3.getFloat(3),
-                    r3.getString(4), r3.getString(5)));
+                    currentAdherant, currentAuteur));
         }
+
+
 
         // Ajoute les livres empruntés par l'adhérant dans adherant.listLivres
         for (Adherant adherant : listAdherants) {
             for  (Livre livre : listLivres) {
-                if (Objects.equals(livre.getAdherantId(), adherant.getIdentifiant())){
+                if (Objects.equals(livre.getAdherant().getIdentifiant(), adherant.getIdentifiant())){
                     ArrayList<Livre> tempList = adherant.getListLivres();
                     tempList.add(livre);
                     adherant.setListLivres(tempList);

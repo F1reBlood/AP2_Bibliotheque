@@ -25,7 +25,6 @@ public class AccueilGUI {
         frame.setResizable(false);
         frame.getContentPane().setBackground(new Color(30, 58, 95));
 
-        // Faire un borderLayout + un grid layout avec les bouttons sur les emplacements 0/0 1/0 2/0 et 1/1
         frame.setLayout(new BorderLayout());
 
         panel = new JPanel();
@@ -34,8 +33,7 @@ public class AccueilGUI {
         panel.setBackground(new Color(30, 58, 95));
 
         titre = new JLabel("Bibliotheque", SwingConstants.CENTER);
-        titre.setBorder(BorderFactory.createEmptyBorder(15,0,0,0));
-        styleController.addStyleToLabel(titre);
+        styleController.addStyleToTitle(titre);
         frame.add(titre,BorderLayout.NORTH);
 
         buttons = new ArrayList<JButton>();
