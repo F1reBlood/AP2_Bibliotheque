@@ -39,12 +39,28 @@ public class AccueilGUI {
         buttons = new ArrayList<JButton>();
 
         btnEmprunter = new JButton("Emprunter");
+        btnEmprunter.addActionListener(e -> {
+            new EmprunterGUI();
+            frame.dispose();
+        });
         buttons.add(btnEmprunter);
         btnRestituer = new JButton("Restituer");
+        btnRestituer.addActionListener(e -> {
+            new RestituerGUI();
+            frame.dispose();
+        });
         buttons.add(btnRestituer);
         btnInformations = new JButton("Informations");
+        btnInformations.addActionListener(e -> {
+            new InformationsGUI();
+            frame.dispose();
+        });
         buttons.add(btnInformations);
         btnCatalogue = new JButton("Catalogue");
+        btnCatalogue.addActionListener(e -> {
+            new CatalogueGUI();
+            frame.dispose();
+        });
         buttons.add(btnCatalogue);
 
         for (JButton btn : buttons) {

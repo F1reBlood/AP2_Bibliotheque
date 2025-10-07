@@ -48,6 +48,10 @@ public class CatalogueGUI {
         styleController.addStyleToButton(btnRetour);
         btnRetour.setFont(new Font("Segoe UI", Font.BOLD, 24));
         btnRetour.setPreferredSize(new Dimension(150,40));
+        btnRetour.addActionListener(e -> {
+            new AccueilGUI();
+            frame.dispose();
+        });
 
         frame.add(titre, BorderLayout.NORTH);
         frame.add(panel);
@@ -58,5 +62,53 @@ public class CatalogueGUI {
         btnPanel.add(btnRetour);
 
         frame.setVisible(true);
+    }
+
+    public JPanel getBtnPanel() {
+        return btnPanel;
+    }
+
+    public void setBtnPanel(JPanel btnPanel) {
+        this.btnPanel = btnPanel;
+    }
+
+    public JPanel getPanel() {
+        return panel;
+    }
+
+    public void setPanel(JPanel panel) {
+        this.panel = panel;
+    }
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
+    public void setFrame(JFrame frame) {
+        this.frame = frame;
+    }
+
+    public JList<Livre> getListLivre() {
+        return listLivre;
+    }
+
+    public void setListLivre(JList<Livre> listLivre) {
+        this.listLivre = listLivre;
+    }
+
+    public JButton getBtnRetour() {
+        return btnRetour;
+    }
+
+    public void setBtnRetour(JButton btnRetour) {
+        this.btnRetour = btnRetour;
+    }
+
+    public JLabel getTitre() {
+        return titre;
+    }
+
+    public void setTitre(JLabel titre) {
+        this.titre = titre;
     }
 }

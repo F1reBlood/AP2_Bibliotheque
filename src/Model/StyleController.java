@@ -7,10 +7,12 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 public class StyleController {
-    public void addStyleToLabel(JLabel label){
-        label.setFont(new Font("Serif", Font.BOLD, 64));
+    public void addStyleToLabel(JLabel label) {
+        label.setFont(new Font("Segoe UI", Font.BOLD, 32));
         label.setForeground(new Color(174, 212, 255));
+        label.setBorder(BorderFactory.createEmptyBorder(5, 0, 5, 0));
     }
+
 
     public void addStyleToTitle(JLabel title){
         title.setFont(new Font("Serif", Font.BOLD, 64));
@@ -58,5 +60,40 @@ public class StyleController {
         // Scrollbar
         JScrollPane scrollPane = new JScrollPane(list);
         scrollPane.setBorder(BorderFactory.createLineBorder(new Color(20, 40, 70), 2));
+    }
+
+    public void addStyleToTextField(JTextField textField) {
+        textField.setFont(new Font("Segoe UI", Font.PLAIN, 20));
+        textField.setForeground(Color.WHITE);
+        textField.setBackground(new Color(30, 60, 100)); // bleu foncé doux
+        textField.setCaretColor(Color.WHITE); // curseur blanc
+        textField.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createLineBorder(new Color(70, 110, 160), 2), // bordure bleue
+                new EmptyBorder(8, 12, 8, 12) // padding intérieur
+        ));
+
+        // Supprimer le focus par défaut (bleu moche)
+        textField.setFocusTraversalKeysEnabled(false);
+
+        // Effet focus visuel (bordure plus claire quand sélectionné)
+        textField.addFocusListener(new java.awt.event.FocusAdapter() {
+            @Override
+            public void focusGained(java.awt.event.FocusEvent e) {
+                textField.setBorder(BorderFactory.createCompoundBorder(
+                        BorderFactory.createLineBorder(new Color(120, 160, 220), 2),
+                        new EmptyBorder(8, 12, 8, 12)
+                ));
+                textField.setBackground(new Color(40, 80, 130));
+            }
+
+            @Override
+            public void focusLost(java.awt.event.FocusEvent e) {
+                textField.setBorder(BorderFactory.createCompoundBorder(
+                        BorderFactory.createLineBorder(new Color(70, 110, 160), 2),
+                        new EmptyBorder(8, 12, 8, 12)
+                ));
+                textField.setBackground(new Color(30, 60, 100));
+            }
+        });
     }
 }
