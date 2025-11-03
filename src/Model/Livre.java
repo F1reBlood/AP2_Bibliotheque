@@ -6,6 +6,7 @@ public class Livre {
     private float prix;
     private Adherant adherant;
     private Auteur auteur;
+    private boolean dispo;
 
     public Livre(String ISBN, String titre, float prix, Adherant adherant, Auteur auteur) {
         this.ISBN = ISBN;
@@ -13,6 +14,14 @@ public class Livre {
         this.prix = prix;
         this.adherant = adherant;
         this.auteur = auteur;
+        this.dispo = true;
+    }
+
+    public boolean isDispo() {
+        return dispo;
+    }
+    public void setDispo(boolean dispo) {
+        this.dispo = dispo;
     }
 
     public Auteur getAuteur() {

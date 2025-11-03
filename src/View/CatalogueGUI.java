@@ -1,20 +1,21 @@
 package View;
 
-import Model.Livre;
+import Controller.AccueilController;
+import Model.SqlConnector;
 import Model.StyleController;
 
 import javax.swing.*;
-import javax.swing.border.Border;
 import java.awt.*;
-import java.util.ArrayList;
+import java.sql.SQLException;
 
 public class CatalogueGUI {
     private JLabel titre;
     private JButton btnRetour;
-    private JList<Livre> listLivre;
+    private JList<String> listLivre;
     private JFrame frame;
     private JPanel panel;
     private JPanel btnPanel;
+    private DefaultListModel<String> listElements;
 
     public CatalogueGUI() {
         StyleController styleController = new StyleController();
@@ -41,7 +42,8 @@ public class CatalogueGUI {
         styleController.addStyleToTitle(titre);
         titre.setPreferredSize(new Dimension(120,100));
 
-        listLivre = new JList<Livre>();
+        listElements = new DefaultListModel<String>();
+        listLivre = new JList<String>(listElements);
         styleController.addStyleToList(listLivre);
 
         btnRetour = new JButton("Retour");
@@ -49,7 +51,13 @@ public class CatalogueGUI {
         btnRetour.setFont(new Font("Segoe UI", Font.BOLD, 24));
         btnRetour.setPreferredSize(new Dimension(150,40));
         btnRetour.addActionListener(e -> {
-            new AccueilGUI();
+            try {
+                new AccueilController(new AccueilGUI(), new SqlConnector());
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
             frame.dispose();
         });
 
@@ -64,6 +72,12 @@ public class CatalogueGUI {
         frame.setVisible(true);
     }
 
+    public DefaultListModel<String> getListElements() {
+        return listElements;
+    }
+    public void setListElements(DefaultListModel<String> listElements) {
+        this.listElements = listElements;
+    }
     public JPanel getBtnPanel() {
         return btnPanel;
     }
@@ -88,11 +102,11 @@ public class CatalogueGUI {
         this.frame = frame;
     }
 
-    public JList<Livre> getListLivre() {
+    public JList<String> getListLivre() {
         return listLivre;
     }
 
-    public void setListLivre(JList<Livre> listLivre) {
+    public void setListLivre(JList<String> listLivre) {
         this.listLivre = listLivre;
     }
 

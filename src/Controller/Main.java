@@ -5,11 +5,8 @@ import View.AccueilGUI;
 
 import java.sql.SQLException;
 
-public class MainController {
+public class Main {
     public static void main(String[] args) throws SQLException, ClassNotFoundException {
-        SqlConnector model = new SqlConnector();
-        AccueilGUI view = new AccueilGUI();
-
-        
+        new AccueilController(new AccueilGUI(), new SqlConnector());
     }
 }
