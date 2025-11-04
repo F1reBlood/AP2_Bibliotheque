@@ -46,6 +46,8 @@ public class EmprunterController {
                         try {
                             Statement stmt = model.getConnection().createStatement();
                             stmt.executeUpdate("update livre set adherantId = '" + currentAdherant.getIdentifiant() + "'" + " where ISBN like '" + currentLivre.getISBN()+"'");
+                            currentAdherant = null;
+                            currentLivre = null;
                         } catch (SQLException ex) {
                             throw new RuntimeException(ex);
                         }

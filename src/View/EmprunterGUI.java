@@ -33,7 +33,7 @@ public class EmprunterGUI {
 
         panel = new JPanel();
         panel.setLayout(new GridLayout(2,2, 30, 30));
-        panel.setBorder(BorderFactory.createEmptyBorder(40,20,20,20));
+        panel.setBorder(BorderFactory.createEmptyBorder(60,20,40,20));
         panel.setBackground(new Color(30, 58, 95));
 
         titre = new JLabel("Emprunter un livre", SwingConstants.CENTER);
@@ -89,6 +89,7 @@ public class EmprunterGUI {
 
         frame.setVisible(true);
     }
+
 
     public JFrame getFrame() {
         return frame;

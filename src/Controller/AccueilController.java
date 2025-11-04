@@ -4,6 +4,7 @@ import Model.SqlConnector;
 import View.AccueilGUI;
 import View.CatalogueGUI;
 import View.EmprunterGUI;
+import View.RestituerGUI;
 
 import java.sql.SQLException;
 
@@ -21,6 +22,10 @@ public class AccueilController {
         view.getBtnCatalogue().addActionListener(e -> {
             new CatalogueController(new CatalogueGUI(), model);
             view.getFrame().dispose();
+        });
+        view.getBtnRestituer().addActionListener(e -> {
+           new RestituerController(new RestituerGUI(), model);
+           view.getFrame().dispose();
         });
     }
 }
