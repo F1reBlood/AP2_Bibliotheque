@@ -18,10 +18,10 @@ public class CatalogueController {
         listElements = view.getListElements();
         for (Livre livre : livres) {
             if (livre.isDispo()){
-                listElements.addElement(livre.getTitre() + ", " + livre.getAuteur().getPrenom() + " " + livre.getAuteur().getNom() + ", Disponible : Oui");
+                listElements.addElement(livre.getISBN() + " | " + livre.getTitre() + ", " + livre.getAuteur().getPrenom() + " " + livre.getAuteur().getNom() + " | Disponible");
             }
             else{
-                listElements.addElement(livre.getTitre() + ", " + livre.getAuteur().getPrenom() + " " + livre.getAuteur().getNom() + ", Disponible : Non");
+                listElements.addElement(livre.getISBN() + " | " + livre.getTitre() + ", " + livre.getAuteur().getPrenom() + " " + livre.getAuteur().getNom() + " | Indisponible");
             }
 
         }

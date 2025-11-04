@@ -1,9 +1,12 @@
 package View;
 
+import Controller.AccueilController;
+import Model.SqlConnector;
 import Model.StyleController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 
 public class EmprunterGUI {
     private JFrame frame;
@@ -62,7 +65,13 @@ public class EmprunterGUI {
 
         btnRetour = new JButton("Retour");
         btnRetour.addActionListener(e -> {
-            new AccueilGUI();
+            try {
+                new AccueilController(new AccueilGUI(), new SqlConnector());
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
             frame.dispose();
         });
         styleController.addStyleToButton(btnRetour);

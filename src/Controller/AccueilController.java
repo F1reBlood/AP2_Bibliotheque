@@ -10,22 +10,16 @@ import java.sql.SQLException;
 public class AccueilController {
     private AccueilGUI view;
     private SqlConnector model;
-    public AccueilController(AccueilGUI view, SqlConnector model) {
+    public AccueilController(AccueilGUI view, SqlConnector model){
         this.view = view;
         this.model = model;
 
         view.getBtnEmprunter().addActionListener(e -> {
-            new EmprunterGUI();
+            new EmprunterController(new EmprunterGUI(), model);
             view.getFrame().dispose();
         });
         view.getBtnCatalogue().addActionListener(e -> {
-            try {
-                new CatalogueController(new CatalogueGUI(), new SqlConnector());
-            } catch (ClassNotFoundException ex) {
-                throw new RuntimeException(ex);
-            } catch (SQLException ex) {
-                throw new RuntimeException(ex);
-            }
+            new CatalogueController(new CatalogueGUI(), model);
             view.getFrame().dispose();
         });
     }
