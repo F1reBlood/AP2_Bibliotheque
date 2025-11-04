@@ -1,10 +1,13 @@
 package View;
 
+import Controller.AccueilController;
 import Model.Livre;
+import Model.SqlConnector;
 import Model.StyleController;
 
 import javax.swing.*;
 import java.awt.*;
+import java.sql.SQLException;
 
 public class InformationsGUI {
     private JFrame frame;
@@ -25,9 +28,10 @@ public class InformationsGUI {
     private JLabel emailLabel;
     private JTextField emailTextField;
     private JLabel livreLabel;
-    private JList<Livre> listLivre;
+    private JList<String> listLivre;
     private JButton btnRetour;
     private JButton btnModifier;
+    private DefaultListModel<String> listElements;
 
     public InformationsGUI() {
 
@@ -60,11 +64,6 @@ public class InformationsGUI {
         styleController.addStyleToButton(btnConfirmer);
         btnConfirmer.setPreferredSize(new Dimension(220,70));
 
-        //Temporaire :
-        btnConfirmer.addActionListener(e -> {
-            frame.dispose();
-            this.InformationGUI_Page2();
-        });
 
         bottomPanel = new JPanel();
         bottomPanel.setBackground(new Color(30, 58, 95));
@@ -115,6 +114,7 @@ public class InformationsGUI {
         idTextField = new JTextField();
         styleController.addStyleToTextField(idTextField);
         leftPanel.add(idTextField);
+        idTextField.setEditable(false);
 
         prenomLabel = new JLabel("Prenom :", SwingConstants.CENTER);
         styleController.addStyleToLabel(prenomLabel);
@@ -144,7 +144,8 @@ public class InformationsGUI {
         styleController.addStyleToLabel(livreLabel);
         rightPanel.add(livreLabel, BorderLayout.NORTH);
 
-        listLivre = new JList<Livre>();
+        listElements = new DefaultListModel<String>();
+        listLivre = new JList<String>(listElements);
         styleController.addStyleToList(listLivre);
         rightPanel.add(listLivre, BorderLayout.CENTER);
 
@@ -154,7 +155,13 @@ public class InformationsGUI {
 
         btnRetour = new JButton("Retour");
         btnRetour.addActionListener(e -> {
-            new AccueilGUI();
+            try {
+                new AccueilController(new AccueilGUI(), new SqlConnector());
+            } catch (ClassNotFoundException ex) {
+                throw new RuntimeException(ex);
+            } catch (SQLException ex) {
+                throw new RuntimeException(ex);
+            }
             frame.dispose();
         });
         styleController.addStyleToButton(btnRetour);
@@ -172,5 +179,174 @@ public class InformationsGUI {
 
 
         frame.setVisible(true);
+    }
+
+
+    public DefaultListModel<String> getListElements() {
+        return listElements;
+    }
+
+    public void setListElements(DefaultListModel<String> listElements) {
+        this.listElements = listElements;
+    }
+
+    public JFrame getFrame() {
+        return frame;
+    }
+
+    public void setFrame(JFrame frame) {
+        this.frame = frame;
+    }
+
+    public JPanel getPanel() {
+        return panel;
+    }
+
+    public void setPanel(JPanel panel) {
+        this.panel = panel;
+    }
+
+    public JLabel getTitre() {
+        return titre;
+    }
+
+    public void setTitre(JLabel titre) {
+        this.titre = titre;
+    }
+
+    public JLabel getIdLabel() {
+        return idLabel;
+    }
+
+    public void setIdLabel(JLabel idLabel) {
+        this.idLabel = idLabel;
+    }
+
+    public JTextField getIdTextField() {
+        return idTextField;
+    }
+
+    public void setIdTextField(JTextField idTextField) {
+        this.idTextField = idTextField;
+    }
+
+    public JButton getBtnConfirmer() {
+        return btnConfirmer;
+    }
+
+    public void setBtnConfirmer(JButton btnConfirmer) {
+        this.btnConfirmer = btnConfirmer;
+    }
+
+    public JPanel getBottomPanel() {
+        return bottomPanel;
+    }
+
+    public void setBottomPanel(JPanel bottomPanel) {
+        this.bottomPanel = bottomPanel;
+    }
+
+    public StyleController getStyleController() {
+        return styleController;
+    }
+
+    public void setStyleController(StyleController styleController) {
+        this.styleController = styleController;
+    }
+
+    public JPanel getLeftPanel() {
+        return leftPanel;
+    }
+
+    public void setLeftPanel(JPanel leftPanel) {
+        this.leftPanel = leftPanel;
+    }
+
+    public JPanel getRightPanel() {
+        return rightPanel;
+    }
+
+    public void setRightPanel(JPanel rightPanel) {
+        this.rightPanel = rightPanel;
+    }
+
+    public JLabel getPrenomLabel() {
+        return prenomLabel;
+    }
+
+    public void setPrenomLabel(JLabel prenomLabel) {
+        this.prenomLabel = prenomLabel;
+    }
+
+    public JTextField getPrenomTextField() {
+        return prenomTextField;
+    }
+
+    public void setPrenomTextField(JTextField prenomTextField) {
+        this.prenomTextField = prenomTextField;
+    }
+
+    public JLabel getNomLabel() {
+        return nomLabel;
+    }
+
+    public void setNomLabel(JLabel nomLabel) {
+        this.nomLabel = nomLabel;
+    }
+
+    public JTextField getNomTextField() {
+        return nomTextField;
+    }
+
+    public void setNomTextField(JTextField nomTextField) {
+        this.nomTextField = nomTextField;
+    }
+
+    public JLabel getEmailLabel() {
+        return emailLabel;
+    }
+
+    public void setEmailLabel(JLabel emailLabel) {
+        this.emailLabel = emailLabel;
+    }
+
+    public JTextField getEmailTextField() {
+        return emailTextField;
+    }
+
+    public void setEmailTextField(JTextField emailTextField) {
+        this.emailTextField = emailTextField;
+    }
+
+    public JLabel getLivreLabel() {
+        return livreLabel;
+    }
+
+    public void setLivreLabel(JLabel livreLabel) {
+        this.livreLabel = livreLabel;
+    }
+
+    public JList<String> getListLivre() {
+        return listLivre;
+    }
+
+    public void setListLivre(JList<String> listLivre) {
+        this.listLivre = listLivre;
+    }
+
+    public JButton getBtnRetour() {
+        return btnRetour;
+    }
+
+    public void setBtnRetour(JButton btnRetour) {
+        this.btnRetour = btnRetour;
+    }
+
+    public JButton getBtnModifier() {
+        return btnModifier;
+    }
+
+    public void setBtnModifier(JButton btnModifier) {
+        this.btnModifier = btnModifier;
     }
 }

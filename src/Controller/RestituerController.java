@@ -55,21 +55,23 @@ public class RestituerController {
                                 throw new RuntimeException(ex);
                             }
 
-                            JOptionPane.showMessageDialog(null, "Le livre a bien été restitué", "Information", JOptionPane.INFORMATION_MESSAGE);
+                            view.getIsbnTextField().setText("");
+                            JOptionPane.showMessageDialog(view.getFrame(), "Le livre a bien été restitué", "Information", JOptionPane.INFORMATION_MESSAGE);
+
                         } else {
-                            JOptionPane.showMessageDialog(null, "Le livre est emprunté par un autre adhérant", "Erreur", JOptionPane.ERROR_MESSAGE);
+                            JOptionPane.showMessageDialog(view.getFrame(), "Le livre est emprunté par un autre adhérant", "Erreur", JOptionPane.ERROR_MESSAGE);
                         }
                     }
                     else{
-                        JOptionPane.showMessageDialog(null, "Le livre n'est pas emprunté", "Erreur", JOptionPane.ERROR_MESSAGE);
+                        JOptionPane.showMessageDialog(view.getFrame(), "Le livre n'est pas emprunté", "Erreur", JOptionPane.ERROR_MESSAGE);
                     }
                 }
                 else{
-                    JOptionPane.showMessageDialog(null, "L'ISBN du livre est invalide", "Erreur", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(view.getFrame(), "L'ISBN du livre est invalide", "Erreur", JOptionPane.ERROR_MESSAGE);
                 }
             }
             else{
-                JOptionPane.showMessageDialog(null, "L'identifiant de l'adhérant est invalide", "Erreur", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(view.getFrame(), "L'identifiant de l'adhérant est invalide", "Erreur", JOptionPane.ERROR_MESSAGE);
             }
         });
     }
